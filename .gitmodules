@@ -1,0 +1,6 @@
+[submodule "movies-frontend-2283110-2139923"]
+	path = movies-frontend-2283110-2139923
+	url = https://github.com/Nchargui/movies-frontend-2283110-2139923.git
+[submodule "movies-backend-2283110-2139923"]
+	path = movies-backend-2283110-2139923
+	url = https://github.com/Nchargui/movies-backend-2283110-2139923.git
