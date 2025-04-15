@@ -1,0 +1,45 @@
+services:
+  backend:
+    image: nadch4/tp2-2283110-2139923-backend:v2
+    depends_on:
+      - mongodb
+    build:
+      context: ./movies-backend-2283110-2139923
+    container_name: movies-backend-2283110-2139923
+    ports:
+      - "8080:8080"
+    networks:
+      - movies-network
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://root:123456@mongodb:27017/movie-api-db?authSource=admin
+      - SERVER_PORT=8080
+  
+  mongodb:
+    image: mongo:8.0.6
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+    networks:
+      - movies-network
+    volumes:
+      - db:/data/db
+      - ./mongo-seed:/docker-entrypoint-initdb.d
+  
+  frontend:
+    image: nadch4/tp2-2283110-2139923-frontend:v2
+    build:
+      context: ./movies-backend-2283110-2139923
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - movies-network
+volumes:
+  db:
+     
+networks:
+  movies-network:
+    driver: bridge
