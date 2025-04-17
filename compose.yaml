@@ -1,6 +1,6 @@
 services:
   backend:
-    image: nadch4/tp2-2283110-2139923-backend:v2
+    image: nadch4/tp2-2283110-2139923-backend
     depends_on:
       - mongodb
     build:
@@ -28,7 +28,7 @@ services:
       - ./mongo-seed:/docker-entrypoint-initdb.d
   
   frontend:
-    image: nadch4/tp2-2283110-2139923-frontend:v2
+    image: nadch4/tp2-2283110-2139923-frontend
     build:
       context: ./movies-backend-2283110-2139923
     ports:
